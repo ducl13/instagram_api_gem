@@ -45,7 +45,7 @@ module InstagramApi
         limit: response.headers['x-ratelimit-limit'],
         remaining: response.headers['x-ratelimit-remaining']
       )
-      ::Hashie::Mash.new(response_hash)
+      HashieMashResponse.new(response_hash)
     end
 
     def parse_failed(response)
@@ -57,3 +57,6 @@ module InstagramApi
 
 end
 
+class HashieMashResponse < Hashie::Mash
+  disable_warnings
+end
